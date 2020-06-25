@@ -1,0 +1,6 @@
+{
+    "api": {
+        "invokeUrl": "https://d6r4hl8fs5.execute-api.us-east-1.amazonaws.com/library",
+        "invokeUrlget": "https://d6r4hl8fs5.execute-api.us-east-1.amazonaws.com/library/books"
+    }
+}
