@@ -37,11 +37,7 @@ export default class OperationUser extends Component {
         this.saveModalOpen = this.saveModalOpen.bind(this);
     }
 
-
-
     fetchDatas = async () => {
-        // add call to AWS API Gateway to fetch datas here
-        // then set them in state
         try {
             const res = await axios.get(`${config.api.invokeUrl}/user`);
             const datas = res.data;
@@ -50,18 +46,14 @@ export default class OperationUser extends Component {
             console.log(`An error has occurred: ${err}`);
         }
     }
-
     componentDidMount = () => {
         this.fetchDatas();
     }
-
     async replaceModalItem(index) {
         this.setState({
             requiredItem: index
         });
     }
-
-
     saveModalOpen(data) {
         const requiredItem = this.state.requiredItem;
         let newdata = this.state.datas;
@@ -71,7 +63,6 @@ export default class OperationUser extends Component {
 
     handleDeleteUser = async (username, event) => {
         event.preventDefault();
-        // add call to AWS API Gateway delete user endpoint here
         swal({
             title: "Are you sure?",
             text: "Once deleted, you will not be able to recover this user!",
@@ -101,7 +92,6 @@ export default class OperationUser extends Component {
 
     handleAddUser = async (username, event) => {
         event.preventDefault();
-        // add call to AWS API Gateway add product endpoint here
         try {
             const params = {
                 "Username": username,
@@ -183,7 +173,7 @@ export default class OperationUser extends Component {
                         <td>{user.Username}</td>
                         <td>{user.Password}</td>
                         <td>{user.Email}</td>
-                        <td><Button className="btn btn-lg btn-danger" onClick={event => this.handleDeleteProduct(user.Username, event)}><FaTrash /> DELETE</Button></td>
+                        <td><Button className="btn btn-lg btn-danger" onClick={event => this.handleDeleteUser(user.Username, event)}><FaTrash /> DELETE</Button></td>
                         <td><Button className="btn btn-lg btn-info" data-toggle="modal" data-target="#patchModal"
                             onClick={() => this.replaceModalItem(index)}>
                             <FaEdit /> EDIT </Button>
@@ -200,7 +190,7 @@ export default class OperationUser extends Component {
                     <Container>
                         <div className="row">
                             <div className="col">
-                                <form onSubmit={event => this.handleAddProduct(this.state.newData.Username, event)}>
+                                <form onSubmit={event => this.handleAddUser(this.state.newData.Username, event)}>
                                     <div className="field has-addons">
                                         <div className="card" style={{ marginTop: "5px", marginBottom: "5px", backgroundColor: "gray" }}>
                                             <div className="card-header">

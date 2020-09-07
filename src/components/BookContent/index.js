@@ -22,10 +22,11 @@ export default function BookContent(props) {
                     <h5> by {book.BookAuthor} </h5>
                     <p>{book.Summary} </p>
                     <ul>
-                        <li>Author: {book.BookAuthor}</li>
+                        {/* <li>Author: {book.BookAuthor}</li> */}
                         <li>Publisher: {book.Publisher}</li>
                         <li>Year Of Publication: {book.YearOfPublication}</li>
                         <li>ISBN: {book.ISBN}</li>
+                        <li>Type: {book.Type}</li>
                     </ul>
                 </Col>
             </Row>

@@ -85,7 +85,6 @@ export class UpdatePopup extends Component {
                                         placeholder="Password"
                                         value={this.state.Password}
                                         onChange={(e) => this.passwordHandler(e)}
-                                        disabled
                                     />
                                 </div>
                                 <div className="form-group col-md-12">
@@ -96,7 +95,6 @@ export class UpdatePopup extends Component {
                                         placeholder="Email"
                                         value={this.state.Email}
                                         onChange={(e) => this.emailHandler(e)}
-                                        disabled
                                     />
                                 </div>
                             </div>

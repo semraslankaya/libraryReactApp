@@ -9,17 +9,13 @@ export class Login extends React.Component {
         super(props);
         this.state = { isLogginOpen: true, isRegisterOpen: false }
     }
-
     async showLoginBox() {
         this.setState({ isLogginOpen: true, isRegisterOpen: false })
     }
-
     async showRegisterBox() {
         this.setState({ isLogginOpen: false, isRegisterOpen: true })
     }
-
     render() {
-
         return (
             <div className="root-container">
                 <div className="box-controller">

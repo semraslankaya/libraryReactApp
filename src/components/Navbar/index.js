@@ -7,25 +7,17 @@ import { FaUser, FaBook, FaHome, FaBookOpen, FaPowerOff } from "react-icons/fa";
 export default class Navbars extends Component {
   constructor(props) {
     super(props);
-
-    this.state = {
-      show: true,
-    }
-
+    this.state = { show: true, }
   }
   onLogOut(event) {
     localStorage.removeItem("token")
   }
-
   componentDidMount() {
     if (localStorage.getItem("token") === "admin") {
       this.setState({ show: false })
     }
   }
-
   render() {
-
-
     return (
       <NavWrapper >
         <Navbar expand="lg">

@@ -7,17 +7,13 @@ import "slick-carousel/slick/slick-theme.css";
 import axios from 'axios';
 
 const config = require('../../config.json');
-
 function searchText(term) {
     return function (x) {
         return x.BookName.toLowerCase().includes(term.toLowerCase()) || !term;
-    }
-}
-
+    }}
 export default class AllBooks extends Component {
     constructor(props) {
         super(props);
-
         this.state = {
             allBooks: [],
             filterBooks: [],
@@ -25,16 +21,13 @@ export default class AllBooks extends Component {
         }
         this.searchHandler = this.searchHandler.bind(this);
     }
-
     getAllBooks = async () => {
         const books = await axios.get(config.api.invokeUrlget)
         this.setState({ allBooks: books.data, filterBooks: books.data })
     };
-
     componentDidMount = () => {
         this.getAllBooks();
     }
-
     onChangeBookList(event) {
         if (event.target.value === "WorldsClassics") {
             this.state.allBooks = this.state.filterBooks
@@ -48,18 +41,12 @@ export default class AllBooks extends Component {
             this.setState({ allBooks: this.state.filterBooks })
         }
     }
-
-    searchHandler(event) {
-        this.setState({ term: event.target.value })
-    }
-
+    searchHandler(event) { this.setState({ term: event.target.value }) }
     render() {
         if (localStorage.getItem("token") === null) {
             return (<Redirect to="/" />)
         } else {
-
             const bookList = this.state.allBooks;
-
             return (
                 <div style={{ marginLeft: "50px", marginRight: "50px" }}>
                     <div className="row">
@@ -70,7 +57,6 @@ export default class AllBooks extends Component {
                                 <option value="DeepArchieve">Deep Archieve</option>
                             </select>
                         </div>
-
                         <div style={{ marginTop: "10px", justifyContent: "flex-end", marginLeft: "auto" }}>
                             <Form inline className="ml-auto">
                                 <FaSearch />
@@ -79,12 +65,10 @@ export default class AllBooks extends Component {
                                     type="text"
                                     placeholder="Search"
                                     className="mr-sm-2"
-                                    onChange={this.searchHandler} value={this.state.term}
-                                />
+                                    onChange={this.searchHandler} value={this.state.term}/>
                             </Form>
                         </div>
                     </div>
-
                     <ListGroup >
                         {bookList.filter(searchText(this.state.term)).map(function (books) {
                             return (

@@ -56,12 +56,9 @@ export class LoginBox extends React.Component {
 
     async submitLogin(event) {
         if (this.state.username === "") {
-            this.showValidationError("username", "Username Cannot be empty!");
-        }
+            this.showValidationError("username", "Username Cannot be empty!"); }
         if (this.state.password === "") {
-            this.showValidationError("password", "Password Cannot be empty!");
-        }
-
+            this.showValidationError("password", "Password Cannot be empty!"); }
         if (this.state.username && this.state.password) {
             try {
                 const res = await axios.get(`${config.api.invokeUrl}/user`);
@@ -84,27 +81,15 @@ export class LoginBox extends React.Component {
             }
         }
     }
-
-
     render() {
-
         let usernameErr = null, passwordErr = null;
-
         for (let err of this.state.errors) {
-            if (err.element === "username") {
-                usernameErr = err.message;
-            } if (err.element === "password") {
-                passwordErr = err.message;
-            }
+            if (err.element === "username") { usernameErr = err.message;
+            } if (err.element === "password") { passwordErr = err.message;}
         }
-
-        if (this.state.redirect) {
-            return <Redirect to={"/home"} />
-        }
-
+        if (this.state.redirect) { return <Redirect to={"/home"} /> }
         return (
             <div className="base-container">
-
                 <div className="header">Login</div>
                 <div className="content">
                     <div className="image">
@@ -113,7 +98,7 @@ export class LoginBox extends React.Component {
                     <div className="form">
                         <div className="form-group">
                             <label htmlFor="username">Username</label>
-                            <input type="text" name="username" placeholder="User Name" onChange={this.onUsernameChanges.bind(this)} />
+                            <input type="text" name="username" placeholder="Username" onChange={this.onUsernameChanges.bind(this)} />
                             <small className="danger-error"> {usernameErr ? usernameErr : ""}</small>
                         </div>
                         <div className="form-group">

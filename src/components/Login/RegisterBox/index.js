@@ -56,11 +56,9 @@ export class RegisterBox extends React.Component {
         }
 
     }
-
     showValidationError(element, message) {
         this.setState((prevState) => ({ errors: [...prevState.errors, { element, message }] }))
     }
-
     clearValidationError(element) {
         this.setState((prevState) => {
             let newArr = [];
@@ -72,7 +70,6 @@ export class RegisterBox extends React.Component {
             return { errors: newArr };
         })
     }
-
     onUsernameChanges(e) {
         this.setState({ username: e.target.value })
         this.clearValidationError("username");
@@ -96,11 +93,9 @@ export class RegisterBox extends React.Component {
     }
 
     render() {
-
         if (this.state.redirect) {
             return <Redirect to={'/home'} />
         }
-
         let usernameErr = null, passwordErr = null, emailErr = null;
 
         for (let err of this.state.errors) {
@@ -114,9 +109,7 @@ export class RegisterBox extends React.Component {
                 emailErr = err.message;
             }
         }
-
         let pwdWeak = false, pwdMedium = false, pwdStrong = false;
-
         if (this.state.pwdState === "weak") {
             pwdWeak = true;
         } else if (this.state.pwdState === "medium") {
@@ -127,7 +120,6 @@ export class RegisterBox extends React.Component {
             pwdMedium = true;
             pwdStrong = true;
         }
-
         return (
             <div className="base-container">
 

@@ -57,21 +57,17 @@ export default class Operations extends Component {
     componentDidMount = () => {
         this.fetchDatas();
     }
-
     async replaceModalItem(index) {
         this.setState({
             requiredItem: index
         });
     }
-
-
     saveModalOpen(data) {
         const requiredItem = this.state.requiredItem;
         let newdata = this.state.datas;
         newdata[requiredItem] = data;
         this.setState({ datas: newdata });
     }
-
     handleDeleteBook = async (bookId, event) => {
         event.preventDefault();
         // add call to AWS API Gateway delete book endpoint here
@@ -116,7 +112,12 @@ export default class Operations extends Component {
             };
             await axios.post(`${config.api.invokeUrl}/books/${bookId}`, params);
             this.setState({ datas: [...this.state.datas, this.state.newData] });
-            this.setState({ newData: { "BookId": "", "BookName": "", "ISBN": "", "YearOfPublication": "", "Publisher": "", "BookAuthor": "" } });
+            this.setState({
+                newData: {
+                    "BookId": "", "BookName": "", "ISBN": "", "YearOfPublication": "",
+                    "Publisher": "", "BookAuthor": ""
+                }
+            });
             swal({
                 title: "Good job!",
                 text: "Book created!",
@@ -140,25 +141,16 @@ export default class Operations extends Component {
     onAddPublisherChange = event => this.setState({ newData: { ...this.state.newData, "Publisher": event.target.value } });
 
     onSort(event, sortKey) {
-        // var column = sortKey;
         const direction = this.state.sort ? (this.state.sort.direction === 'asc' ? 'desc' : 'asc') : 'desc';
         const datas = this.state.datas;
-        // datas.sort((a, b) => a[sortKey].localeCompare(b[sortKey]))
         const sortedDatas = datas.sort((a, b) => {
             const nameA = a[sortKey];
             const nameB = b[sortKey];
-            if (sortKey === "BookId") {
-                return nameA - nameB;
-            }
-            if (nameA < nameB) {
-                return -1;
-            }
-            if (nameA > nameB) {
-                return 1;
-            }
+            if (sortKey === "BookId") { return nameA - nameB; }
+            if (nameA < nameB) { return -1; }
+            if (nameA > nameB) { return 1; }
             return 0;
         });
-
         if (direction === 'desc') {
             sortedDatas.reverse();
         }
